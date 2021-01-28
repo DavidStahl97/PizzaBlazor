@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaBlazor.Shared
 {
-    public record UI
+    public class UI
     {
         public bool ShowBasket { get; init; }
     }

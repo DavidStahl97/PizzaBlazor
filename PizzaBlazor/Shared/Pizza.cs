@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaBlazor.Shared
 {
-    public record Pizza
+    public class Pizza
     {
         public int Id { get; init; }
 

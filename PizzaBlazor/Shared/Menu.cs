@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaBlazor.Shared
 {
-    public record Menu
+    public class Menu
     {
         public IEnumerable<Pizza> Pizzas { get; init; } = new List<Pizza>();
 

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PizzaBlazor.Shared
 {
-    public record State
+    public class State
     {
         public Menu Menu { get; init; }
 
-        public Baseket Baseket { get; init; }
+        public Baseket Baseket { get; } = new Baseket();
 
         public UI UI { get; init; }
     }
