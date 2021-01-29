@@ -4,7 +4,7 @@
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<br/>
 
 @foreach (var pizza in State.Menu.Pizzas)
 {
@@ -27,6 +27,34 @@ Welcome to your new app.
     </div>
 }
 
+@if (State.Baseket.Orders.Any())
+{
+    <h1>Your current order</h1>
+
+    @foreach (var (pizza, pos) in State.Baseket.Orders.Select((id, pos) => (State.Menu.GetPizza(id), pos)))
+    {
+        <div class="row">
+            <div class="col">
+                @pizza.Name
+            </div>
+            <div class="col">
+                @pizza.Price
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" @onclick="@(() => RemoveFromBasket(pos))">
+                    Remove
+                </button>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col">Total:</div>
+        <div class="col">@State.TotalPrice</div>
+        <div class="col"></div>
+    </div>
+}
+
 @code {
     private State State = new State
     {
@@ -43,14 +71,14 @@ Welcome to your new app.
                 },
                 new Pizza
                 {
-                    Id = 1,
+                    Id = 2,
                     Name = "Margarita",
                     Price = 83.90M,
                     Spiciness = Spiciness.None
                 },
                 new Pizza
                 {
-                    Id = 1,
+                    Id = 3,
                     Name = "Diabolo",
                     Price = 1.90M,
                     Spiciness = Spiciness.Hot
@@ -66,5 +94,11 @@ Welcome to your new app.
     {
         Console.WriteLine($"Add pizza { pizza.Name }");
         State.Baseket.Add(pizza.Id);
+    }
+
+    private void RemoveFromBasket(int pos)
+    {
+        Console.WriteLine($"Remove pizaa at pos {pos}");
+        State.Baseket.RemoveAt(pos);
     }
 }

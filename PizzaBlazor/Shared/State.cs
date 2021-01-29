@@ -13,5 +13,7 @@ namespace PizzaBlazor.Shared
         public Baseket Baseket { get; } = new Baseket();
 
         public UI UI { get; init; }
+
+        public decimal TotalPrice => Baseket.Orders.Sum(id => Menu.GetPizza(id).Price);
     }
 }
