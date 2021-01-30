@@ -56,22 +56,40 @@
 
     <h1>Please enter your details below</h1>
 
-    <fieldset>
-        <p>
-            <label for="name">Name:</label>
-            <input id="name" @bind="State.Baseket.Customer.Name"/>
-        </p>
-        <p>
-            <label for="street">Street:</label>
-            <input id="street" @bind="State.Baseket.Customer.City" />
-        </p>
-        <p>
-            <label for="city">City:</label>
-            <input id="city" @bind="State.Baseket.Customer.City"/>
-        </p>
+    <EditForm OnValidSubmit="PlaceOrder"
+              Model="@State.Baseket.Customer">
+        <DataAnnotationsValidator />
 
-        <button @onclick="PlaceOrder">Checkout</button>
-    </fieldset>
+        <div class="form-group row mb-1">
+            <label class="col-sm-3 col-form-label" for="FirstName">Name:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.Name"/>
+                <ValidationMessage For="@(() => State.Baseket.Customer.Name)" />
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label class="col-sm-3 col-form-label" for="LastName">Street:</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.Street" />
+                <ValidationMessage For="@(() => State.Baseket.Customer.Street)"/>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label class="col-sm-3 col-form-label" for="Birthday">City</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.City"/>
+                <ValidationMessage For="@(() => State.Baseket.Customer.City)"/>
+            </div>
+        </div>
+
+        <div class="form-group mb-0">
+            <button type="submit" id="BtnRegister" class="btn btn-primary">
+                Checkout
+            </button>
+        </div>
+    </EditForm>
 }
 
 @code {
