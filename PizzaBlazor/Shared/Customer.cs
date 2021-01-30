@@ -10,10 +10,10 @@ namespace PizzaBlazor.Shared
     {
         public int Id { get; init; }
 
-        public string Name { get; init; }
+        public string Name { get; set; }
 
-        public string Street { get; init; }
+        public string Street { get; set; }
 
-        public string City { get; init; }
+        public string City { get; set; }
     }
 }

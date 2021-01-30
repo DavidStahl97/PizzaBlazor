@@ -53,6 +53,25 @@
         <div class="col">@State.TotalPrice</div>
         <div class="col"></div>
     </div>
+
+    <h1>Please enter your details below</h1>
+
+    <fieldset>
+        <p>
+            <label for="name">Name:</label>
+            <input id="name" @bind="State.Baseket.Customer.Name"/>
+        </p>
+        <p>
+            <label for="street">Street:</label>
+            <input id="street" @bind="State.Baseket.Customer.City" />
+        </p>
+        <p>
+            <label for="city">City:</label>
+            <input id="city" @bind="State.Baseket.Customer.City"/>
+        </p>
+
+        <button @onclick="PlaceOrder">Checkout</button>
+    </fieldset>
 }
 
 @code {
@@ -100,5 +119,10 @@
     {
         Console.WriteLine($"Remove pizaa at pos {pos}");
         State.Baseket.RemoveAt(pos);
+    }
+
+    private void PlaceOrder()
+    {
+        Console.WriteLine("Placing order");
     }
 }

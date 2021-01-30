@@ -8,7 +8,7 @@ namespace PizzaBlazor.Shared
 {
     public class Baseket
     {
-        public Customer Customer { get; init; }
+        public Customer Customer { get; } = new Customer();
 
         public List<int> Orders { get; } = new List<int>();
 
