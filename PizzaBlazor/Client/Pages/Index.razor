@@ -16,43 +16,12 @@
                 GetPizzaFromId="@State.Menu.GetPizza"
                 Selected="@(pos => RemoveFromBasket(pos))" />
 
-    <h1>Please enter your details below</h1>
-
-    <EditForm OnValidSubmit="PlaceOrder"
-              Model="@State.Baseket.Customer">
-        <DataAnnotationsValidator />
-
-        <div class="form-group row mb-1">
-            <label class="col-sm-3 col-form-label" for="FirstName">Name:</label>
-            <div class="col-sm-9">
-                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.Name"/>
-                <ValidationMessage For="@(() => State.Baseket.Customer.Name)" />
-            </div>
-        </div>
-
-        <div class="form-group row mb-1">
-            <label class="col-sm-3 col-form-label" for="LastName">Street:</label>
-            <div class="col-sm-9">
-                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.Street" />
-                <ValidationMessage For="@(() => State.Baseket.Customer.Street)"/>
-            </div>
-        </div>
-
-        <div class="form-group row mb-1">
-            <label class="col-sm-3 col-form-label" for="Birthday">City</label>
-            <div class="col-sm-9">
-                <InputText class="form-control" @bind-Value="@State.Baseket.Customer.City"/>
-                <ValidationMessage For="@(() => State.Baseket.Customer.City)"/>
-            </div>
-        </div>
-
-        <div class="form-group mb-0">
-            <button type="submit" id="BtnRegister" class="btn btn-primary">
-                Checkout
-            </button>
-        </div>
-    </EditForm>
-}
+<!-- Customer entry -->   
+<CustomerEntry Title="Please enter your details below"
+               ButtonTitle="Checkout"
+               ButtonClass="btn btn-primary"
+               Customer="@State.Baseket.Customer"
+               Submit="@PlaceOrder"/>
 
 @code {
     private State State = new State
