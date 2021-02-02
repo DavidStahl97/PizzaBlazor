@@ -8,12 +8,12 @@ namespace PizzaBlazor.Shared
 {
     public class Pizza
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
-        public string Name { get; init; }
+        public string Name { get; set; }
 
-        public decimal Price { get; init; }
+        public decimal Price { get; set; }
 
-        public Spiciness Spiciness { get; init; }
+        public Spiciness Spiciness { get; set; }
     }
 }
