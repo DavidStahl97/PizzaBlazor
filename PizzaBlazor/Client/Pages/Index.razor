@@ -1,6 +1,7 @@
 ﻿@page "/"
 
-@inject IMenuService menuService 
+@inject IMenuService _menuService
+@inject IOrderService _orderService
 
 <h1>Hello, world!</h1>
 
@@ -23,14 +24,14 @@
                ButtonTitle="Checkout"
                ButtonClass="btn btn-primary"
                Customer="@State.Baseket.Customer"
-               Submit="@PlaceOrder"/>
+               Submit="@PlaceOrderAsync"/>
 
 @code {
     private State State = new State();
 
     protected override async Task OnInitializedAsync()
     {
-        State.Menu = await menuService.GetMenuAsync();
+        State.Menu = await _menuService.GetMenuAsync();
     }
 
     private string SpicingImage(Spiciness spiciness) =>
@@ -48,8 +49,8 @@
         State.Baseket.RemoveAt(pos);
     }
 
-    private void PlaceOrder()
+    private async Task PlaceOrderAsync()
     {
-        Console.WriteLine("Placing order");
+        await _orderService.PlaceOrderAsync(State.Baseket);
     }
 }
