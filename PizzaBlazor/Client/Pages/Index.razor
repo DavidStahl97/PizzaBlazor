@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@inject IMenuService menuService 
+
 <h1>Hello, world!</h1>
 
 <br/>
@@ -24,36 +26,12 @@
                Submit="@PlaceOrder"/>
 
 @code {
-    private State State = new State
+    private State State = new State();
+
+    protected override async Task OnInitializedAsync()
     {
-        Menu = new Menu
-        {
-            Pizzas = new List<Pizza>
-            {
-                new Pizza
-                {
-                    Id = 1,
-                    Name = "Pepperoni",
-                    Price = 8.90M,
-                    Spiciness = Spiciness.Spicy
-                },
-                new Pizza
-                {
-                    Id = 2,
-                    Name = "Margarita",
-                    Price = 83.90M,
-                    Spiciness = Spiciness.None
-                },
-                new Pizza
-                {
-                    Id = 3,
-                    Name = "Diabolo",
-                    Price = 1.90M,
-                    Spiciness = Spiciness.Hot
-                }
-            }
-        }
-    };
+        State.Menu = await menuService.GetMenuAsync();
+    }
 
     private string SpicingImage(Spiciness spiciness) =>
         $"images/{spiciness.ToString().ToLower()}.png";

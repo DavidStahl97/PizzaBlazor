@@ -8,7 +8,7 @@ namespace PizzaBlazor.Shared
 {
     public class State
     {
-        public Menu Menu { get; init; }
+        public Menu Menu { get; set; }
 
         public Basket Baseket { get; } = new Basket();
 
