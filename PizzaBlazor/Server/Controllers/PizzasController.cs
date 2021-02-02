@@ -10,33 +10,23 @@ namespace PizzaBlazor.Server.Controllers
     [ApiController]
     public class PizzasController : ControllerBase
     {
-        private static readonly List<Pizza> pizzas = new List<Pizza>
+        private readonly PizzaDbContext _db;
+
+        public PizzasController(PizzaDbContext db)
         {
-            new Pizza
-            {
-                Id = 1,
-                Name = "Pepperoni",
-                Price = 8.90M,
-                Spiciness = Spiciness.Spicy
-            },
-            new Pizza
-            {
-                Id = 2,
-                Name = "Margarita",
-                Price = 83.90M,
-                Spiciness = Spiciness.None
-            },
-            new Pizza
-            {
-                Id = 3,
-                Name = "Diabolo",
-                Price = 1.90M,
-                Spiciness = Spiciness.Hot
-            }
-        };
+            _db = db;
+        }
 
         [HttpGet("pizzas")]
         public IQueryable<Pizza> GetPizzas()
-            => pizzas.AsQueryable();
+            => _db.Pizzas;
+
+        [HttpPost("pizzas")]
+        public IActionResult InsertPizza([FromBody]Pizza pizza)
+        {
+            _db.Pizzas.Add(pizza);
+            _db.SaveChanges();
+            return Created($"pizzas/{pizza.Id}", pizza);
+        }
     }
 }
