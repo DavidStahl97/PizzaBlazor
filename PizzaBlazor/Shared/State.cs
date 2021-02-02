@@ -10,7 +10,7 @@ namespace PizzaBlazor.Shared
     {
         public Menu Menu { get; init; }
 
-        public Baseket Baseket { get; } = new Baseket();
+        public Basket Baseket { get; } = new Basket();
 
         public UI UI { get; init; }
 

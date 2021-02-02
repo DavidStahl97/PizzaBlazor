@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaBlazor.Shared
 {
-    public class Baseket
+    public class Basket
     {
         public Customer Customer { get; } = new Customer();
 
