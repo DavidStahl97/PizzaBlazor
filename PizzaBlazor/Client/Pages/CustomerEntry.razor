@@ -4,6 +4,8 @@
           Model="@Customer">
     <DataAnnotationsValidator />
 
+    <InputWatcher FieldChanged="@FieldChanged"/>
+
     <div class="form-group row mb-1">
         <label class="col-sm-3 col-form-label" for="FirstName">Name:</label>
         <div class="col-sm-9">
@@ -51,4 +53,12 @@
 
     [Parameter]
     public EventCallback Submit { get; set; }
+
+    [Parameter]
+    public EventCallback<Customer> CustomerChanged { get; set; }
+
+    private void FieldChanged(string fieldName)
+    {
+        CustomerChanged.InvokeAsync(Customer);
+    }
 }
